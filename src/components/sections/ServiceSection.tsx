@@ -29,7 +29,7 @@ export function ServiceSection() {
           asperiores illo incidunt.
         </p>
       </header>
-      <div className="grid grid-cols-1 lg:max-w-screen-lg lg:grid-cols-3 px-4 gap-6 w-full">
+      <div className="grid max-w-xd grid-cols-1 lg:max-w-screen-lg md:grid-cols-3 px-4 gap-6 w-full">
         {SERVICE_DATA.map((service, index) => (
           <div
             key={index}

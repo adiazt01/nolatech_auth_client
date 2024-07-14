@@ -35,7 +35,7 @@ export function CountSection() {
   return (
     <section className="py-8 px-8 gap-8 flex flex-col md:flex-row bg-green-900">
       <header className="flex lg:w-3/6 flex-col items-center justify-center">
-        <h3 className="text-4xl font-medium text-gray-100">
+        <h3 className="text-4xl font-medium text-center md:text-left text-gray-100">
           Fecha de apertura
         </h3>
       </header>
