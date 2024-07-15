@@ -27,7 +27,7 @@ export function DashboardPage() {
 
   useEffect(() => {
     async function fetchUsers(page: number, pageSize: number) {
-      const response = await axios.get(`/users?page=${page}&limit=${pageSize}`);
+      const response = await axios.get(`/users?page=${page + 1}&limit=${pageSize}`);
       console.log(response);
       setUsers(response.data.users);
       setTotalPages(response.data.meta.totalPages);
