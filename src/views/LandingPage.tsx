@@ -1,12 +1,5 @@
 import { Button } from "../components/ui/button";
 import "../css/LandingPage.css";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../components/ui/carousel";
 import { Navbar } from "../components/Navbar";
 import { HeroSection } from "../components/sections/HeroSection";
 import { ServiceSection } from "../components/sections/ServiceSection";
@@ -41,7 +34,11 @@ export function LandingPage() {
           </div>
         </div>
         <div className="flex flex-col">
-          <img src="old_man.png" alt=""  className="max-w-xs mx-auto md:max-w-sm lg:max-w-lg"/>
+          <img
+            src="old_man.png"
+            alt=""
+            className="max-w-xs mx-auto md:max-w-sm lg:max-w-lg"
+          />
         </div>
       </section>
       <VideoSection />

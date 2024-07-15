@@ -26,12 +26,7 @@ import {
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
 import { Input } from "../components/ui/input";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../components/ui/tooltip";
+import { TooltipProvider } from "../components/ui/tooltip";
 import {
   Table,
   TableBody,
@@ -41,12 +36,14 @@ import {
   TableRow,
 } from "../components/ui/table";
 import { Sheet, SheetContent, SheetTrigger } from "../components/ui/sheet";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "../api/axiosConfig";
+import { AsideDashboard } from "../components/AsideDashboard";
+import { useNavigate } from "react-router-dom";
 
 export function DashboardPage() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchUsers() {
@@ -60,156 +57,21 @@ export function DashboardPage() {
   return (
     <TooltipProvider>
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
-        <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
-          <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-            <Link
-              to="#"
-              className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
-            >
-              <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
-              <span className="sr-only">Acme Inc</span>
-            </Link>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Home className="h-5 w-5" />
-                  <span className="sr-only">Dashboard</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Dashboard</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <ShoppingCart className="h-5 w-5" />
-                  <span className="sr-only">Orders</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Orders</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Package className="h-5 w-5" />
-                  <span className="sr-only">Products</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Products</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Users2 className="h-5 w-5" />
-                  <span className="sr-only">Customers</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Customers</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <LineChart className="h-5 w-5" />
-                  <span className="sr-only">Analytics</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Analytics</TooltipContent>
-            </Tooltip>
-          </nav>
-          <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Settings className="h-5 w-5" />
-                  <span className="sr-only">Settings</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Settings</TooltipContent>
-            </Tooltip>
-          </nav>
-        </aside>
+        <AsideDashboard />
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-          <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+          <header className="sticky top-0 z-30 flex h-14 justify-end items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
             <Sheet>
               <SheetTrigger asChild>
-                <Button size="icon" variant="outline" className="sm:hidden">
+                <Button size="icon" variant="white" className="sm:hidden">
                   <PanelLeft className="h-5 w-5" />
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="sm:max-w-xs">
-                <nav className="grid gap-6 text-lg font-medium">
-                  <Link
-                    to="#"
-                    className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
-                  >
-                    <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-                    <span className="sr-only">Acme Inc</span>
-                  </Link>
-                  <Link
-                    to="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Home className="h-5 w-5" />
-                    Dashboard
-                  </Link>
-                  <Link
-                    to="#"
-                    className="flex items-center gap-4 px-2.5 text-foreground"
-                  >
-                    <ShoppingCart className="h-5 w-5" />
-                    Orders
-                  </Link>
-                  <Link
-                    to="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Package className="h-5 w-5" />
-                    Products
-                  </Link>
-                  <Link
-                    to="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <Users2 className="h-5 w-5" />
-                    Customers
-                  </Link>
-                  <Link
-                    to="#"
-                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                  >
-                    <LineChart className="h-5 w-5" />
-                    Settings
-                  </Link>
-                </nav>
+                <nav className="grid gap-6 text-lg font-medium"></nav>
               </SheetContent>
             </Sheet>
 
-            <div className="relative ml-auto flex-1 md:grow-0">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-              />
-            </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -218,7 +80,7 @@ export function DashboardPage() {
                   className="overflow-hidden rounded-full"
                 >
                   <img
-                    src="/placeholder-user.jpg"
+                    src={`https://robohash.org/${Math.random()}`}
                     width={36}
                     height={36}
                     alt="Avatar"
@@ -227,20 +89,22 @@ export function DashboardPage() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={async () => {
+                    await axios.get("/auth/logout");
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
-            <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+          <main className="grid flex-1 items-start gap-4 p-4">
+            <div className="grid auto-rows-max items-start gap-4">
               <div>
                 <div>
-                  <Card x-chunk="dashboard-05-chunk-3">
+                  <Card>
                     <CardHeader className="px-7">
                       <CardTitle>Usuarios registrados</CardTitle>
                     </CardHeader>
@@ -248,13 +112,9 @@ export function DashboardPage() {
                       <Table>
                         <TableHeader>
                           <TableRow>
-                            <TableHead className="hidden sm:table-cell">
-                              Nombre
-                            </TableHead>
-                            <TableHead className="hidden sm:table-cell">
-                              Email
-                            </TableHead>
-                            <TableHead className="hidden md:table-cell">
+                            <TableHead className="table-cell">Nombre</TableHead>
+                            <TableHead className="table-cell">Email</TableHead>
+                            <TableHead className="md:table-cell hidden">
                               Password
                             </TableHead>
                           </TableRow>
@@ -262,13 +122,13 @@ export function DashboardPage() {
                         <TableBody>
                           {users.map((user) => (
                             <TableRow key={user._id}>
-                              <TableCell className="hidden sm:table-cell">
-                                {user.name}
+                              <TableCell className="table-cell">
+                                {user.username}
                               </TableCell>
-                              <TableCell className="hidden sm:table-cell">
+                              <TableCell className="table-cell">
                                 {user.email}
                               </TableCell>
-                              <TableCell className="hidden truncate md:table-cell">
+                              <TableCell className="truncate hidden md:table-cell">
                                 {user.password}
                               </TableCell>
                             </TableRow>

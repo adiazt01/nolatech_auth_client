@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { BannerTop } from "./BannerTop";
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
+import useAuthStore from "../store/authStore";
 
-/* TODO add navigate */
 export function Navbar() {
+  const { isAuthenticated } = useAuthStore((state) => state);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -39,16 +40,29 @@ export function Navbar() {
               className="w-22 h-6 md:w-28 md:h-10 lg:w-36 lg:h-14"
             />
           </div>
-          <ul className="flex mt-1 flex-row gap-4 items-center justify-center font-medium text-md">
-            <li className="hover:text-gray-100">
-              <Link to="/">HOME</Link>
-            </li>
-            <li className="hover:text-gray-100">
-              <Link to="/about">ABOUT</Link>
-            </li>
-            <li className="hover:text-gray-100">
-              <Link to="/contact">CONTACT</Link>
-            </li>
+          <ul className="flex mt-1 text flex-row gap-4 items-center justify-center font-medium text-md">
+            {isAuthenticated ? (
+              <>
+                <li>
+                  <Link to="/dashboard" className="hover:text-green-600 transition-colors text-lg">
+                    Dashboard
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/auth/login" className="hover:text-green-600 transition-colors text-lg">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/auth/register" className="hover:text-green-600 transition-colors text-lg">
+                    Register
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>

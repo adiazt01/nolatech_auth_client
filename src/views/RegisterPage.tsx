@@ -178,7 +178,7 @@ export function RegisterPage() {
             <span className="text-muted-foreground">
               Already have an account?
             </span>{" "}
-            <Link to="/login" className="text-balance">
+            <Link to="/auth/login" className="text-balance">
               Login
             </Link>
           </div>
@@ -186,7 +186,7 @@ export function RegisterPage() {
       </div>
       <div className="hidden bg-muted lg:block">
         <img
-          src="/placeholder.svg"
+          src="https://images.unsplash.com/photo-1586439702132-55ce0da661dd?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Image"
           width="1920"
           height="1080"

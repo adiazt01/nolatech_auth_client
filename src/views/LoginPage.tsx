@@ -66,7 +66,7 @@ export function LoginPage() {
   }
 
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+    <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
@@ -136,7 +136,7 @@ export function LoginPage() {
                     ></path>
                   </svg>
                 ) : (
-                  "Register"
+                  "Login"
                 )}
               </Button>
               {form.formState.errors.root && (
@@ -148,17 +148,18 @@ export function LoginPage() {
           </Form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Link to="#" className="underline">
-              Sign up
+            <Link to="/auth/register" className="underline">
+              Register
             </Link>
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:block">
+      <div className="hidden overflow-hidden bg-muted lg:block">
         <img
           alt="Image"
           width="1920"
-          height="1080"
+          src="https://images.unsplash.com/photo-1586439702132-55ce0da661dd?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
           className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />
       </div>
