@@ -1,7 +1,7 @@
 /* En tu archivo CSS o CSS module */
 .newsSection {
   background-image: url('news_phone.png');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
@@ -13,8 +13,14 @@
 }
 
 /* Para dispositivos de escritorio */
-@media (min-width: 769px) {
+@media (min-width: 767px) {
   .newsSection {
-    background-position: center center;
+    background-position: -6rem center;
+  }
+}
+
+@media (min-width: 1023px) {
+  .newsSection {
+    background-position: center;
   }
 }
