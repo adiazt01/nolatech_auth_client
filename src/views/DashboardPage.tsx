@@ -40,10 +40,12 @@ import { useEffect, useState } from "react";
 import axios from "../api/axiosConfig";
 import { AsideDashboard } from "../components/AsideDashboard";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../store/authStore";
 
 export function DashboardPage() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const authStore = useAuthStore((state) => state);
 
   useEffect(() => {
     async function fetchUsers() {
@@ -89,12 +91,10 @@ export function DashboardPage() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  onClick={async () => {
-                    await axios.get("/auth/logout");
-                    navigate("/");
-                  }}
-                >
+                <DropdownMenuItem onClick={() => {
+                  authStore.logout()
+                  navigate("/")
+                  }}>
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
