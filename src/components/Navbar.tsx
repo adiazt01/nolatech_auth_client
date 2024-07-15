@@ -30,7 +30,7 @@ export function Navbar() {
       )}
     >
       <BannerTop />
-      <nav className="flex w-full bg-transparent py-2 items-center flex-row justify-center px-2">
+      <nav className="flex w-full py-2 items-center flex-row justify-center px-2">
         <div className="flex w-full justify-between max-w-6xl">
           <div className="">
             <img

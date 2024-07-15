@@ -41,7 +41,7 @@ export function LandingPage() {
           </div>
         </div>
         <div className="flex flex-col">
-          <img src="old_man.png" alt=""  className="max-w-xl mx-auto"/>
+          <img src="old_man.png" alt=""  className="max-w-xs mx-auto"/>
         </div>
       </section>
       <VideoSection />
