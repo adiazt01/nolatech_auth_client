@@ -18,7 +18,7 @@ export function NewsSection() {
         </p>
         <Button size="lg" className="mt-4 md:mr-auto">VIEW ALL</Button>
       </div>
-      <div className="flex-1 w-full"></div>
+      <div className="flex-1 w-full hidden md:flex"></div>
     </section>
   );
 }
