@@ -1,6 +1,6 @@
 /* En tu archivo CSS o CSS module */
 .backgroundImage {
-    background-image: url('header.png');
+    background-image: url('../header.png');
     background-size: cover;
     background-repeat: no-repeat;
   }
