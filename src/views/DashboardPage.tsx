@@ -1,60 +1,45 @@
-import {
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  PanelLeft,
-  Search,
-  Settings,
-  ShoppingCart,
-  Users2,
-} from "lucide-react";
+import { PanelLeft } from "lucide-react";
 
 import { Button } from "../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
-import { Input } from "../components/ui/input";
 import { TooltipProvider } from "../components/ui/tooltip";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../components/ui/table";
 import { Sheet, SheetContent, SheetTrigger } from "../components/ui/sheet";
 import { useEffect, useState } from "react";
 import axios from "../api/axiosConfig";
 import { AsideDashboard } from "../components/AsideDashboard";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import { UserDataTable } from "../components/tables/user/UserDataTable";
+import { UserColumns } from "../components/tables/user/ColumnsUser";
 
 export function DashboardPage() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const authStore = useAuthStore((state) => state);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    async function fetchUsers() {
-      const response = await axios.get("/users");
-      setUsers(response.data);
+    async function fetchUsers(page: number, pageSize: number) {
+      const response = await axios.get(`/users?page=${page}&limit=${pageSize}`);
+      console.log(response);
+      setUsers(response.data.users);
+      setTotalPages(response.data.meta.totalPages);
     }
 
-    fetchUsers();
-  }, []);
+    fetchUsers(currentPage, pageSize);
+  }, [currentPage, pageSize]);
+
+  const handlePageChange = (newPage: number) => {
+    console.log(newPage);
+    setCurrentPage(newPage);
+  };
 
   return (
     <TooltipProvider>
@@ -91,56 +76,26 @@ export function DashboardPage() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => {
-                  authStore.logout()
-                  navigate("/")
-                  }}>
+                <DropdownMenuItem
+                  onClick={() => {
+                    authStore.logout();
+                    navigate("/");
+                  }}
+                >
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <main className="grid flex-1 items-start gap-4 p-4">
-            <div className="grid auto-rows-max items-start gap-4">
-              <div>
-                <div>
-                  <Card>
-                    <CardHeader className="px-7">
-                      <CardTitle>Usuarios registrados</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead className="table-cell">Nombre</TableHead>
-                            <TableHead className="table-cell">Email</TableHead>
-                            <TableHead className="md:table-cell hidden">
-                              Password
-                            </TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {users.map((user) => (
-                            <TableRow key={user._id}>
-                              <TableCell className="table-cell">
-                                {user.username}
-                              </TableCell>
-                              <TableCell className="table-cell">
-                                {user.email}
-                              </TableCell>
-                              <TableCell className="truncate hidden md:table-cell">
-                                {user.password}
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            </div>
-            <div></div>
+          <main className="flex flex-col relative items-start gap-4 p-4">
+            <h2 className="text-2xl font-semibold">Usuarios registrados</h2>
+            <UserDataTable
+              columns={UserColumns}
+              data={users}
+              totalPages={totalPages}
+              currentPage={currentPage}
+              handlePageChange={handlePageChange}
+            />
           </main>
         </div>
       </div>
