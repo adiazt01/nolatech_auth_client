@@ -11,13 +11,13 @@ export function ProductSection() {
             libero ducimus ipsa optio explicabo esse nulla eos eaque ipsam
             dolore assumenda aliquam, fuga tempore adipisci exercitationem nemo
             asperiores illo incidunt. Lorem ipsum, dolor sit amet consectetur
-            adipisicing elit.<br />
+            adipisicing elit.
+            <br />
             <br />
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam
             libero ducimus ipsa optio explicabo esse nulla eos eaque ipsam
             dolore assumenda aliquam, fuga tempore adipisci exercitationem nemo
           </p>
-
         </div>
         <div className="w-full relative h-80 md:h-72 lg:h-96">
           <img
