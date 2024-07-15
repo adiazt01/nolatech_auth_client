@@ -40,7 +40,7 @@ export function UserDataTable<TData, TValue>({
   console.log(totalPages);
   return (
     <div className="flex w-full h-full overflow-x-hidden gap-4 flex-col">
-      <div className="flex w-full h-full flex-col overflow-x-auto rounded-md bg-white border">
+      <div className="flex min-h-96 w-full h-full flex-col overflow-x-auto rounded-md bg-white border">
         <Table className="whitespace-nowrap overflow-x-auto">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
