@@ -17,6 +17,7 @@ export function App() {
     const verifyAuth = async () => {
       try {
         const res = await axios.get("/auth/verify");
+        setIsAuthenticated(true);
         setUserInformation({
           username: res.data.username,
           email: res.data.email,

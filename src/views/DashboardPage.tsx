@@ -23,16 +23,16 @@ export function DashboardPage() {
   const authStore = useAuthStore((state) => state);
   const [pageSize, setPageSize] = useState(5);
   const [totalPages, setTotalPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
 
+  async function fetchUsers(page: number, pageSize: number) {
+    const response = await axios.get(`/users?page=${page + 1}&limit=${pageSize}`);
+    console.log(response);
+    setUsers(response.data.users);
+    setTotalPages(response.data.meta.totalPages);
+  }
+  
   useEffect(() => {
-    async function fetchUsers(page: number, pageSize: number) {
-      const response = await axios.get(`/users?page=${page + 1}&limit=${pageSize}`);
-      console.log(response);
-      setUsers(response.data.users);
-      setTotalPages(response.data.meta.totalPages);
-    }
-
     fetchUsers(currentPage, pageSize);
   }, [currentPage, pageSize]);
 
